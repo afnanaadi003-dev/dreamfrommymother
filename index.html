@@ -1,0 +1,845 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dream From My Mother: An American Tribal Bloodline to the White House</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        gold: {
+                            400: '#F59E0B',
+                            500: '#D97706',
+                            600: '#B45309',
+                            light: '#FDE68A',
+                            accent: '#EAB308'
+                        },
+                        obsidian: {
+                            900: '#0B0F19',
+                            800: '#111827',
+                            700: '#1F2937',
+                            card: '#151D2A'
+                        }
+                    },
+                    fontFamily: {
+                        serif: ['Cinzel', 'Georgia', 'serif'],
+                        sans: ['Inter', 'sans-serif'],
+                        body: ['Merriweather', 'Georgia', 'serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Inter:wght@300;400;500;600;700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,300&display=swap" rel="stylesheet">
+    <!-- Lucide Icons CDN -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        body {
+            background-color: #0B0F19;
+            color: #F3F4F6;
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+        .font-cinzel { font-family: 'Cinzel', serif; }
+        .font-body { font-family: 'Merriweather', serif; }
+
+        /* Custom Gold Gradient Text */
+        .gold-gradient-text {
+            background: linear-gradient(135deg, #FFFBEB 0%, #FDE68A 25%, #D97706 70%, #92400E 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .gold-border-gradient {
+            border-image: linear-gradient(to bottom right, #D97706, #451A03) 1;
+        }
+
+        /* 3D Book Cover Effect */
+        .book-container {
+            perspective: 1200px;
+        }
+        .book-3d {
+            transform-style: preserve-3d;
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.8), 0 0 50px rgba(217, 119, 6, 0.15);
+        }
+        .book-container:hover .book-3d {
+            transform: rotateY(-18deg) rotateX(6deg) scale(1.02);
+        }
+        .book-spine {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 40px;
+            height: 100%;
+            transform: rotateY(-90deg) translateZ(20px);
+            background: linear-gradient(90deg, #78350F 0%, #B45309 50%, #451A03 100%);
+            border-left: 1px solid rgba(255,255,255,0.2);
+        }
+
+        /* Custom Scrollbar for Reader */
+        .custom-scroll::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scroll::-webkit-scrollbar-track {
+            background: rgba(15, 23, 42, 0.6);
+        }
+        .custom-scroll::-webkit-scrollbar-thumb {
+            background: #B45309;
+            border-radius: 3px;
+        }
+
+        /* Glow effects */
+        .gold-glow {
+            box-shadow: 0 0 25px rgba(217, 119, 6, 0.35);
+        }
+        .gold-glow-lg {
+            box-shadow: 0 0 50px rgba(217, 119, 6, 0.25);
+        }
+
+        /* Ambient Background Mesh */
+        .bg-mesh {
+            background-image: 
+                radial-gradient(at 10% 10%, rgba(180, 83, 9, 0.12) 0px, transparent 50%),
+                radial-gradient(at 90% 80%, rgba(146, 64, 14, 0.15) 0px, transparent 50%),
+                radial-gradient(at 50% 50%, rgba(17, 24, 39, 0.8) 0px, transparent 100%);
+        }
+    </style>
+</head>
+<body class="bg-mesh min-h-screen flex flex-col antialiased selection:bg-gold-500 selection:text-black">
+
+    <!-- Navigation Bar -->
+    <header class="fixed top-0 left-0 right-0 z-40 bg-obsidian-900/80 backdrop-blur-md border-b border-gold-500/20 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <a href="#" class="flex items-center gap-3 group">
+                <div class="w-10 h-10 rounded-full border border-gold-500/50 flex items-center justify-between p-2 bg-gradient-to-br from-gold-600/20 to-transparent group-hover:border-gold-400 transition-colors">
+                    <i data-lucide="feather" class="w-full h-full text-gold-400"></i>
+                </div>
+                <span class="font-cinzel text-lg sm:text-xl font-bold tracking-wider gold-gradient-text">
+                    DREAM FROM MY MOTHER
+                </span>
+            </a>
+
+            <!-- Desktop Nav Links -->
+            <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-gray-300">
+                <a href="#about" class="hover:text-gold-400 transition-colors">Synopsis</a>
+                <a href="#bloodline" class="hover:text-gold-400 transition-colors">Bloodline Timeline</a>
+                <a href="#chapters" class="hover:text-gold-400 transition-colors">Chapters</a>
+                <a href="#author" class="hover:text-gold-400 transition-colors">The Vision</a>
+            </nav>
+
+            <div class="hidden md:flex items-center gap-4">
+                <button onclick="openReaderModal(1)" class="px-4 py-2 text-xs font-semibold tracking-wider text-gold-400 border border-gold-500/40 rounded-full hover:bg-gold-500/10 hover:border-gold-400 transition-all">
+                    READ SAMPLE
+                </button>
+                <button onclick="openOrderModal()" class="px-5 py-2 text-xs font-bold tracking-wider text-black bg-gradient-to-r from-gold-400 to-gold-500 rounded-full hover:from-gold-500 hover:to-gold-600 gold-glow transition-all">
+                    GET NOVEL
+                </button>
+            </div>
+
+            <!-- Mobile Menu Toggle Button -->
+            <button id="mobileMenuBtn" class="md:hidden text-gray-300 hover:text-gold-400 focus:outline-none" aria-label="Toggle Menu">
+                <i data-lucide="menu" class="w-7 h-7"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Navigation Menu -->
+        <div id="mobileMenu" class="hidden md:hidden bg-obsidian-900/95 border-b border-gold-500/20 px-4 pt-2 pb-6 space-y-3">
+            <a href="#about" onclick="toggleMobileMenu()" class="block py-2 text-gray-300 hover:text-gold-400">Synopsis</a>
+            <a href="#bloodline" onclick="toggleMobileMenu()" class="block py-2 text-gray-300 hover:text-gold-400">Bloodline Timeline</a>
+            <a href="#chapters" onclick="toggleMobileMenu()" class="block py-2 text-gray-300 hover:text-gold-400">Chapters</a>
+            <a href="#author" onclick="toggleMobileMenu()" class="block py-2 text-gray-300 hover:text-gold-400">The Vision</a>
+            <div class="pt-4 flex flex-col gap-3">
+                <button onclick="toggleMobileMenu(); openReaderModal(1);" class="w-full py-2.5 text-xs font-semibold text-gold-400 border border-gold-500/40 rounded-full text-center">
+                    READ SAMPLE
+                </button>
+                <button onclick="toggleMobileMenu(); openOrderModal();" class="w-full py-2.5 text-xs font-bold text-black bg-gold-400 rounded-full text-center">
+                    GET NOVEL
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="flex-grow pt-20">
+
+        <!-- HERO SECTION -->
+        <section class="relative min-h-[90vh] flex items-center justify-center py-16 px-4 sm:px-6 lg:px-8 overflow-hidden">
+            <!-- Decorative Subtle Sun / Emblem Ring Background -->
+            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gold-500/5 rounded-full blur-3xl pointer-events-none"></div>
+            <div class="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] sm:w-[500px] h-[300px] sm:h-[500px] border border-gold-500/10 rounded-full pointer-events-none animate-spin-slow"></div>
+
+            <div class="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center relative z-10">
+
+                <!-- Left Column: Book Details & Call To Action -->
+                <div class="lg:col-span-7 text-center lg:text-left space-y-6">
+                    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-gold-500/10 border border-gold-500/30 text-gold-400 text-xs tracking-widest font-semibold uppercase">
+                        <i data-lucide="award" class="w-4 h-4"></i>
+                        <span>An Epic Generational Saga</span>
+                    </div>
+
+                    <h1 class="font-cinzel text-3xl sm:text-5xl lg:text-6xl font-extrabold leading-tight tracking-tight text-white">
+                        DREAM FROM <br class="hidden sm:inline"/>MY MOTHER
+                        <span class="block text-xl sm:text-2xl lg:text-3xl font-medium mt-3 gold-gradient-text tracking-normal font-sans">
+                            An American Tribal Bloodline to the White House
+                        </span>
+                    </h1>
+
+                    <p class="font-body text-base sm:text-lg text-gray-300 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
+                        From sacred ancient ancestral grounds to the corridors of national destiny. Trace the unstoppable five-generation story of unbroken heritage, resilience, and a mother's profound vision that reshaped American history.
+                    </p>
+
+                    <div class="pt-4 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
+                        <button onclick="openReaderModal(1)" class="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-gold-500 to-gold-600 hover:from-gold-400 hover:to-gold-500 text-black font-bold text-sm tracking-wider rounded-full transition-all duration-300 gold-glow flex items-center justify-center gap-3 group">
+                            <i data-lucide="book-open" class="w-5 h-5 group-hover:scale-110 transition-transform"></i>
+                            <span>READ SAMPLE CHAPTER</span>
+                        </button>
+                        <button onclick="openOrderModal()" class="w-full sm:w-auto px-8 py-4 bg-obsidian-800 hover:bg-obsidian-700 text-white border border-gold-500/30 hover:border-gold-400 font-semibold text-sm tracking-wider rounded-full transition-all duration-300 flex items-center justify-center gap-3">
+                            <i data-lucide="shopping-bag" class="w-5 h-5 text-gold-400"></i>
+                            <span>ORDER NOVEL NOW</span>
+                        </button>
+                    </div>
+
+                    <!-- Micro Social Proof / Reviews Banner -->
+                    <div class="pt-6 border-t border-gray-800 flex flex-wrap items-center justify-center lg:justify-start gap-6 text-xs text-gray-400">
+                        <div class="flex items-center gap-1 text-gold-400">
+                            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        </div>
+                        <span>"A triumph of historical fiction and living lineage." — <em>National Literary Chronicle</em></span>
+                    </div>
+                </div>
+
+                <!-- Right Column: Interactive 3D Book Graphic -->
+                <div class="lg:col-span-5 flex justify-center items-center">
+                    <div class="book-container cursor-pointer" onclick="openReaderModal(1)">
+                        <div class="book-3d relative w-[260px] sm:w-[310px] h-[390px] sm:h-[465px] rounded-r-lg bg-obsidian-800 border-r border-t border-b border-gold-500/40 p-6 flex flex-col justify-between overflow-hidden">
+                            <!-- Book Spine Simulation overlay -->
+                            <div class="book-spine"></div>
+                            
+                            <!-- Internal Canvas / Decorative Background -->
+                            <div class="absolute inset-0 bg-gradient-to-br from-obsidian-900 via-obsidian-800 to-obsidian-900 z-0"></div>
+                            <div class="absolute inset-0 opacity-20 bg-[radial-gradient(#D97706_1px,transparent_1px)] [background-size:16px_16px]"></div>
+                            
+                            <!-- Tribal Graphic Elements overlay -->
+                            <div class="relative z-10 border border-gold-500/30 h-full p-5 flex flex-col justify-between text-center bg-obsidian-900/60 backdrop-blur-sm rounded">
+                                <div class="space-y-2">
+                                    <div class="flex justify-center text-gold-400">
+                                        <i data-lucide="compass" class="w-8 h-8"></i>
+                                    </div>
+                                    <p class="text-[10px] uppercase tracking-widest text-gold-400 font-semibold">National Bestseller Novel</p>
+                                    <h2 class="font-cinzel text-xl sm:text-2xl font-bold tracking-tight text-white leading-tight">
+                                        DREAM FROM MY MOTHER
+                                    </h2>
+                                    <div class="w-12 h-0.5 bg-gold-500 mx-auto my-2"></div>
+                                    <p class="text-[11px] font-cinzel text-gold-200">AN AMERICAN TRIBAL BLOODLINE TO THE WHITE HOUSE</p>
+                                </div>
+
+                                <!-- Central Symbolic Art Emblem -->
+                                <div class="my-auto py-4 flex justify-center">
+                                    <div class="w-24 h-24 rounded-full border border-gold-500/40 flex items-center justify-center p-3 relative">
+                                        <div class="absolute inset-0 border border-gold-400/20 rounded-full rotate-45"></div>
+                                        <i data-lucide="landmark" class="w-10 h-10 text-gold-400"></i>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <p class="text-xs text-gray-300 font-medium">A Novel of American Bloodlines</p>
+                                    <p class="text-[10px] text-gold-400 tracking-wider font-mono mt-1">VOL. I HISTORICAL ED.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- SYNOPSIS & AUTHOR SECTION -->
+        <section id="about" class="py-20 bg-obsidian-800/60 border-y border-gold-500/10">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center space-y-4 mb-16">
+                    <h2 class="font-cinzel text-2xl sm:text-4xl font-bold text-white">THE MOTHER'S VISION</h2>
+                    <div class="w-24 h-1 bg-gradient-to-r from-transparent via-gold-500 to-transparent mx-auto"></div>
+                    <p class="text-gray-400 max-w-2xl mx-auto text-sm sm:text-base">
+                        A sweeping tale bridging indigenous sovereignty, American expansion, political triumph, and ultimate sacrifice.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Feature Card 1 -->
+                    <div class="bg-obsidian-card p-8 rounded-2xl border border-gold-500/20 hover:border-gold-500/40 transition-all">
+                        <div class="w-12 h-12 rounded-lg bg-gold-500/10 border border-gold-500/30 flex items-center justify-center text-gold-400 mb-6">
+                            <i data-lucide="trees" class="w-6 h-6"></i>
+                        </div>
+                        <h3 class="font-cinzel text-xl font-bold text-white mb-3">Ancient Roots</h3>
+                        <p class="text-sm text-gray-300 leading-relaxed font-body">
+                            Beginning in the mid-19th century amidst native territories, the story follows matrilineal wisdom passed down through sacred songs and unyielding spiritual conviction.
+                        </p>
+                    </div>
+
+                    <!-- Feature Card 2 -->
+                    <div class="bg-obsidian-card p-8 rounded-2xl border border-gold-500/20 hover:border-gold-500/40 transition-all">
+                        <div class="w-12 h-12 rounded-lg bg-gold-500/10 border border-gold-500/30 flex items-center justify-center text-gold-400 mb-6">
+                            <i data-lucide="flame" class="w-6 h-6"></i>
+                        </div>
+                        <h3 class="font-cinzel text-xl font-bold text-white mb-3">Forged in Fire</h3>
+                        <p class="text-sm text-gray-300 leading-relaxed font-body">
+                            Navigating industrial revolutions, civil rights trials, and cultural preservation, each generation preserves the sacred pledge whispered by a mother to her children.
+                        </p>
+                    </div>
+
+                    <!-- Feature Card 3 -->
+                    <div class="bg-obsidian-card p-8 rounded-2xl border border-gold-500/20 hover:border-gold-500/40 transition-all">
+                        <div class="w-12 h-12 rounded-lg bg-gold-500/10 border border-gold-500/30 flex items-center justify-center text-gold-400 mb-6">
+                            <i data-lucide="crown" class="w-6 h-6"></i>
+                        </div>
+                        <h3 class="font-cinzel text-xl font-bold text-white mb-3">The Presidential Pinnacle</h3>
+                        <p class="text-sm text-gray-300 leading-relaxed font-body">
+                            The culmination of five generations converges at 1600 Pennsylvania Avenue, proving that the heart of America rests upon its indigenous roots.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Expanded Novel Synopsis Banner -->
+                <div class="mt-12 bg-gradient-to-r from-obsidian-900 via-obsidian-700 to-obsidian-900 border border-gold-500/30 p-8 sm:p-10 rounded-2xl flex flex-col md:flex-row items-center gap-8">
+                    <div class="md:w-2/3 space-y-4">
+                        <h3 class="font-cinzel text-2xl font-bold text-gold-400">An Unforgettable Masterpiece</h3>
+                        <p class="text-gray-300 text-sm sm:text-base leading-relaxed font-body">
+                            "Dream From My Mother" is more than a novel; it is a tapestry of American memory. Written with emotional precision, it invites readers to re-examine the historical bloodlines that forged the presidency and the true spirit of North America.
+                        </p>
+                    </div>
+                    <div class="md:w-1/3 text-center w-full">
+                        <button onclick="openReaderModal(1)" class="w-full py-4 px-6 bg-gold-500 hover:bg-gold-400 text-black font-bold rounded-xl text-sm transition-all gold-glow">
+                            EXPLORE CHAPTER 1 EXCERPT
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- INTERACTIVE BLOODLINE TIMELINE & FAMILY TREE SECTION -->
+        <section id="bloodline" class="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+            <div class="text-center space-y-4 mb-16">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gold-500/10 text-gold-400 text-xs font-semibold">
+                    <i data-lucide="git-branch" class="w-4 h-4"></i>
+                    <span>INTERACTIVE NOVEL TIMELINE</span>
+                </div>
+                <h2 class="font-cinzel text-3xl sm:text-4xl font-bold text-white">THE FIVE-GENERATION BLOODLINE</h2>
+                <div class="w-24 h-1 bg-gradient-to-r from-transparent via-gold-500 to-transparent mx-auto"></div>
+                <p class="text-gray-400 max-w-xl mx-auto text-sm">
+                    Click through the generational milestones that brought a native heritage from sovereign tribal lands to the White House.
+                </p>
+            </div>
+
+            <!-- Timeline Navigator / Buttons -->
+            <div class="flex flex-wrap items-center justify-center gap-2 sm:gap-4 mb-12" id="bloodlineTabs">
+                <button onclick="selectGeneration(1)" id="gen-btn-1" class="gen-tab-btn px-4 py-2.5 rounded-full border border-gold-500/40 text-xs sm:text-sm font-semibold transition-all bg-gold-500 text-black gold-glow">
+                    1. Matriarch (1845)
+                </button>
+                <button onclick="selectGeneration(2)" id="gen-btn-2" class="gen-tab-btn px-4 py-2.5 rounded-full border border-gold-500/30 text-xs sm:text-sm font-semibold text-gray-300 hover:text-gold-400 hover:border-gold-400 transition-all bg-obsidian-800">
+                    2. The Resilient (1888)
+                </button>
+                <button onclick="selectGeneration(3)" id="gen-btn-3" class="gen-tab-btn px-4 py-2.5 rounded-full border border-gold-500/30 text-xs sm:text-sm font-semibold text-gray-300 hover:text-gold-400 hover:border-gold-400 transition-all bg-obsidian-800">
+                    3. The Pioneer (1925)
+                </button>
+                <button onclick="selectGeneration(4)" id="gen-btn-4" class="gen-tab-btn px-4 py-2.5 rounded-full border border-gold-500/30 text-xs sm:text-sm font-semibold text-gray-300 hover:text-gold-400 hover:border-gold-400 transition-all bg-obsidian-800">
+                    4. The Visionary Mother (1962)
+                </button>
+                <button onclick="selectGeneration(5)" id="gen-btn-5" class="gen-tab-btn px-4 py-2.5 rounded-full border border-gold-500/30 text-xs sm:text-sm font-semibold text-gray-300 hover:text-gold-400 hover:border-gold-400 transition-all bg-obsidian-800">
+                    5. The Commander (2008)
+                </button>
+            </div>
+
+            <!-- Timeline Generation Details Card -->
+            <div class="bg-obsidian-card border border-gold-500/30 rounded-2xl p-6 sm:p-10 transition-all duration-500 min-h-[320px] flex flex-col justify-between" id="generationCard">
+                <!-- Content dynamically populated via JS -->
+            </div>
+        </section>
+
+        <!-- CHAPTER INDEX & READER PREVIEW SECTION -->
+        <section id="chapters" class="py-20 bg-obsidian-800/40 border-t border-gold-500/10">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center space-y-4 mb-16">
+                    <h2 class="font-cinzel text-3xl sm:text-4xl font-bold text-white">CHAPTER INDEX & EXCERPTS</h2>
+                    <div class="w-24 h-1 bg-gradient-to-r from-transparent via-gold-500 to-transparent mx-auto"></div>
+                    <p class="text-gray-400 max-w-xl mx-auto text-sm">
+                        Preview key moments from the novel's pivotal chapters.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Chapter 1 Box -->
+                    <div class="bg-obsidian-900 border border-gold-500/20 hover:border-gold-500/50 rounded-xl p-6 flex flex-col justify-between group transition-all">
+                        <div>
+                            <div class="text-xs font-mono text-gold-400 mb-2">CHAPTER ONE</div>
+                            <h3 class="font-cinzel text-lg font-bold text-white group-hover:text-gold-400 transition-colors">The River of Whispering Pines</h3>
+                            <p class="text-gray-400 text-xs font-body mt-3 line-clamp-3">
+                                High in the misty foothills of 1845, Chief Standing Eagle's daughter listens to her mother's prophecy under the moonlit sky...
+                            </p>
+                        </div>
+                        <button onclick="openReaderModal(1)" class="mt-6 flex items-center gap-2 text-xs font-semibold text-gold-400 hover:text-gold-300">
+                            <span>Read Preview</span>
+                            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                        </button>
+                    </div>
+
+                    <!-- Chapter 2 Box -->
+                    <div class="bg-obsidian-900 border border-gold-500/20 hover:border-gold-500/50 rounded-xl p-6 flex flex-col justify-between group transition-all">
+                        <div>
+                            <div class="text-xs font-mono text-gold-400 mb-2">CHAPTER TWO</div>
+                            <h3 class="font-cinzel text-lg font-bold text-white group-hover:text-gold-400 transition-colors">Across the Divide</h3>
+                            <p class="text-gray-400 text-xs font-body mt-3 line-clamp-3">
+                                Forced marches and changing maps could not sever the spiritual thread linking generations through displacement and renewal...
+                            </p>
+                        </div>
+                        <button onclick="openReaderModal(2)" class="mt-6 flex items-center gap-2 text-xs font-semibold text-gold-400 hover:text-gold-300">
+                            <span>Read Preview</span>
+                            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                        </button>
+                    </div>
+
+                    <!-- Chapter 3 Box -->
+                    <div class="bg-obsidian-900 border border-gold-500/20 hover:border-gold-500/50 rounded-xl p-6 flex flex-col justify-between group transition-all">
+                        <div>
+                            <div class="text-xs font-mono text-gold-400 mb-2">CHAPTER THREE</div>
+                            <h3 class="font-cinzel text-lg font-bold text-white group-hover:text-gold-400 transition-colors">The Steel & Harvest Era</h3>
+                            <p class="text-gray-400 text-xs font-body mt-3 line-clamp-3">
+                                As America enters the 20th century, a young mother carries ancestral herbal remedies into rapid modernizing cities...
+                            </p>
+                        </div>
+                        <button onclick="openReaderModal(3)" class="mt-6 flex items-center gap-2 text-xs font-semibold text-gold-400 hover:text-gold-300">
+                            <span>Read Preview</span>
+                            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                        </button>
+                    </div>
+
+                    <!-- Chapter 4 Box -->
+                    <div class="bg-obsidian-900 border border-gold-500/20 hover:border-gold-500/50 rounded-xl p-6 flex flex-col justify-between group transition-all">
+                        <div>
+                            <div class="text-xs font-mono text-gold-400 mb-2">CHAPTER FOUR</div>
+                            <h3 class="font-cinzel text-lg font-bold text-white group-hover:text-gold-400 transition-colors">Voices in the Capitol</h3>
+                            <p class="text-gray-400 text-xs font-body mt-3 line-clamp-3">
+                                A groundbreaking law degree becomes a shield for tribal sovereignty as mother and son fight in congressional halls...
+                            </p>
+                        </div>
+                        <button onclick="openReaderModal(4)" class="mt-6 flex items-center gap-2 text-xs font-semibold text-gold-400 hover:text-gold-300">
+                            <span>Read Preview</span>
+                            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                        </button>
+                    </div>
+
+                    <!-- Chapter 5 Box -->
+                    <div class="bg-obsidian-900 border border-gold-500/20 hover:border-gold-500/50 rounded-xl p-6 flex flex-col justify-between group transition-all">
+                        <div>
+                            <div class="text-xs font-mono text-gold-400 mb-2">CHAPTER FIVE</div>
+                            <h3 class="font-cinzel text-lg font-bold text-white group-hover:text-gold-400 transition-colors">The Portico of Promises</h3>
+                            <p class="text-gray-400 text-xs font-body mt-3 line-clamp-3">
+                                Inauguration eve at the Oval Office: remembering the mother whose quiet wisdom made the historical presidency possible...
+                            </p>
+                        </div>
+                        <button onclick="openReaderModal(5)" class="mt-6 flex items-center gap-2 text-xs font-semibold text-gold-400 hover:text-gold-300">
+                            <span>Read Preview</span>
+                            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                        </button>
+                    </div>
+
+                    <!-- Full Novel Promo Card -->
+                    <div class="bg-gradient-to-br from-gold-600/20 to-obsidian-900 border border-gold-500/40 rounded-xl p-6 flex flex-col justify-between text-center">
+                        <div>
+                            <i data-lucide="book-marked" class="w-10 h-10 text-gold-400 mx-auto mb-3"></i>
+                            <h3 class="font-cinzel text-lg font-bold text-white">Experience The Full Journey</h3>
+                            <p class="text-xs text-gray-300 mt-2">Available in Hardcover, Paperback, Audiobook & eBook formats worldwide.</p>
+                        </div>
+                        <button onclick="openOrderModal()" class="mt-6 py-2.5 px-4 bg-gold-400 text-black font-bold text-xs rounded-lg hover:bg-gold-500 transition-colors">
+                            ORDER COMPLETE BOOK
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- AUTHOR VISION & QUOTE SECTION -->
+        <section id="author" class="py-20 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto text-center">
+            <div class="bg-obsidian-card border border-gold-500/30 rounded-3xl p-8 sm:p-14 relative overflow-hidden">
+                <div class="absolute -top-12 -left-12 w-40 h-40 bg-gold-500/10 rounded-full blur-2xl"></div>
+                <div class="relative z-10 space-y-6">
+                    <i data-lucide="quote" class="w-12 h-12 text-gold-500/40 mx-auto"></i>
+                    <p class="font-body italic text-lg sm:text-2xl text-gray-200 leading-relaxed max-w-3xl mx-auto">
+                        "My mother taught me that a leader is not defined by the throne they occupy, but by the roots that nourish their courage when the storms of history blow hardest."
+                    </p>
+                    <div class="w-16 h-0.5 bg-gold-500 mx-auto"></div>
+                    <div>
+                        <h4 class="font-cinzel font-bold text-lg text-white">THE AUTHOR'S NOTE</h4>
+                        <p class="text-xs text-gold-400 uppercase tracking-widest mt-1">Dream From My Mother</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- NEWSLETTER / STAY UPDATED SECTION -->
+        <section class="py-16 bg-gradient-to-b from-obsidian-900 to-black border-t border-gold-500/20">
+            <div class="max-w-4xl mx-auto px-4 text-center space-y-6">
+                <i data-lucide="mail" class="w-10 h-10 text-gold-400 mx-auto"></i>
+                <h2 class="font-cinzel text-2xl sm:text-3xl font-bold text-white">JOIN THE READERS CIRCLE</h2>
+                <p class="text-gray-400 text-sm max-w-md mx-auto">
+                    Receive exclusive author commentary, ancestral historical notes, and updates on book signing tours.
+                </p>
+                
+                <form onsubmit="handleSubscribe(event)" class="max-w-md mx-auto flex flex-col sm:flex-row gap-3">
+                    <input type="email" id="newsletterEmail" required placeholder="Enter your email address" class="px-5 py-3.5 bg-obsidian-800 border border-gold-500/30 rounded-full text-sm text-white placeholder-gray-500 focus:outline-none focus:border-gold-400 flex-grow">
+                    <button type="submit" class="px-7 py-3.5 bg-gold-500 hover:bg-gold-400 text-black font-bold text-xs uppercase tracking-wider rounded-full transition-all gold-glow whitespace-nowrap">
+                        SUBSCRIBE
+                    </button>
+                </form>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-black border-t border-gray-900 py-10 text-center text-xs text-gray-500">
+        <div class="max-w-7xl mx-auto px-4 space-y-4">
+            <div class="flex justify-center gap-6 text-gray-400">
+                <a href="#about" class="hover:text-gold-400">Synopsis</a>
+                <a href="#bloodline" class="hover:text-gold-400">Timeline</a>
+                <a href="#chapters" class="hover:text-gold-400">Excerpts</a>
+                <a href="#" onclick="openOrderModal()" class="hover:text-gold-400">Buy Book</a>
+            </div>
+            <p>&copy; 2026 "Dream From My Mother: An American Tribal Bloodline to the White House". All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- INTERACTIVE CHAPTER READER MODAL -->
+    <div id="readerModal" class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-md flex items-center justify-center p-2 sm:p-6">
+        <div class="bg-obsidian-900 border border-gold-500/40 rounded-2xl w-full max-w-4xl h-[90vh] flex flex-col shadow-2xl overflow-hidden relative" id="readerContainer">
+            
+            <!-- Modal Header -->
+            <div class="p-4 sm:p-6 border-b border-gold-500/20 flex items-center justify-between bg-obsidian-800/80">
+                <div>
+                    <span class="text-xs font-mono text-gold-400 uppercase tracking-widest" id="readerChapterNum">CHAPTER PREVIEW</span>
+                    <h3 class="font-cinzel text-lg sm:text-2xl font-bold text-white" id="readerTitle">The River of Whispering Pines</h3>
+                </div>
+                
+                <!-- Controls & Close Button -->
+                <div class="flex items-center gap-3">
+                    <div class="hidden sm:flex items-center gap-1 bg-obsidian-900 border border-gray-800 rounded-lg p-1 text-xs">
+                        <button onclick="changeFontSize(-1)" class="px-2 py-1 text-gray-300 hover:text-white font-bold" title="Decrease font size">A-</button>
+                        <button onclick="changeFontSize(1)" class="px-2 py-1 text-gray-300 hover:text-white font-bold" title="Increase font size">A+</button>
+                    </div>
+                    <button onclick="closeReaderModal()" class="p-2 text-gray-400 hover:text-gold-400 rounded-full hover:bg-obsidian-700 transition-colors">
+                        <i data-lucide="x" class="w-6 h-6"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Modal Content (Reader Body) -->
+            <div class="flex-grow p-6 sm:p-10 overflow-y-auto custom-scroll font-body leading-relaxed text-gray-200 text-base sm:text-lg space-y-6" id="readerContent">
+                <!-- Text loaded dynamically -->
+            </div>
+
+            <!-- Modal Footer -->
+            <div class="p-4 border-t border-gold-500/20 bg-obsidian-800/80 flex items-center justify-between text-xs text-gray-400">
+                <span id="readerProgress">Chapter 1 of 5</span>
+                <div class="flex items-center gap-3">
+                    <button onclick="openOrderModal()" class="px-4 py-2 bg-gold-500 text-black font-bold rounded-lg hover:bg-gold-400 transition-colors">
+                        Get Full Book
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ORDER / BUY BOOK MODAL -->
+    <div id="orderModal" class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-md flex items-center justify-center p-4">
+        <div class="bg-obsidian-900 border border-gold-500/40 rounded-2xl w-full max-w-lg p-6 sm:p-8 space-y-6 relative">
+            <button onclick="closeOrderModal()" class="absolute top-4 right-4 text-gray-400 hover:text-gold-400">
+                <i data-lucide="x" class="w-6 h-6"></i>
+            </button>
+            <div class="text-center space-y-2">
+                <h3 class="font-cinzel text-2xl font-bold text-white">ORDER YOUR COPY</h3>
+                <p class="text-xs text-gold-400 uppercase tracking-widest">Select Your Preferred Edition</p>
+            </div>
+
+            <div class="space-y-3">
+                <a href="#order-confirm" onclick="confirmOrder('Hardcover Special Edition')" class="p-4 border border-gold-500/30 rounded-xl bg-obsidian-800 hover:border-gold-400 flex items-center justify-between group transition-all">
+                    <div class="flex items-center gap-3">
+                        <i data-lucide="book" class="w-6 h-6 text-gold-400"></i>
+                        <div>
+                            <div class="font-bold text-sm text-white">Hardcover Deluxe</div>
+                            <div class="text-xs text-gray-400">Embossed gold foil & family map inclusion</div>
+                        </div>
+                    </div>
+                    <span class="font-bold text-gold-400 text-sm">$32.99</span>
+                </a>
+
+                <a href="#order-confirm" onclick="confirmOrder('Paperback Edition')" class="p-4 border border-gold-500/30 rounded-xl bg-obsidian-800 hover:border-gold-400 flex items-center justify-between group transition-all">
+                    <div class="flex items-center gap-3">
+                        <i data-lucide="book-open" class="w-6 h-6 text-gold-400"></i>
+                        <div>
+                            <div class="font-bold text-sm text-white">Trade Paperback</div>
+                            <div class="text-xs text-gray-400">Standard release edition</div>
+                        </div>
+                    </div>
+                    <span class="font-bold text-gold-400 text-sm">$18.99</span>
+                </a>
+
+                <a href="#order-confirm" onclick="confirmOrder('EBook Digital')" class="p-4 border border-gold-500/30 rounded-xl bg-obsidian-800 hover:border-gold-400 flex items-center justify-between group transition-all">
+                    <div class="flex items-center gap-3">
+                        <i data-lucide="tablet" class="w-6 h-6 text-gold-400"></i>
+                        <div>
+                            <div class="font-bold text-sm text-white">Digital eBook</div>
+                            <div class="text-xs text-gray-400">Kindle, Nook, Apple Books</div>
+                        </div>
+                    </div>
+                    <span class="font-bold text-gold-400 text-sm">$9.99</span>
+                </a>
+            </div>
+
+            <p class="text-[11px] text-center text-gray-500">Ships worldwide. Digital orders delivered instantly.</p>
+        </div>
+    </div>
+
+    <!-- TOAST NOTIFICATION CONTAINER -->
+    <div id="toast" class="fixed bottom-6 right-6 z-50 hidden bg-gold-500 text-black px-6 py-3 rounded-xl font-bold shadow-2xl flex items-center gap-3">
+        <i data-lucide="check-circle" class="w-5 h-5"></i>
+        <span id="toastMsg">Action completed successfully!</span>
+    </div>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // Lucide Icons Init
+        lucide.createIcons();
+
+        // Mobile Menu Toggle
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('hidden');
+        }
+
+        document.getElementById('mobileMenuBtn').addEventListener('click', toggleMobileMenu);
+
+        // Generational Bloodline Data
+        const bloodlineData = {
+            1: {
+                title: "1st Generation: Chief Standing Eagle & Matriarch Awenasa",
+                era: "1845 – Tribal Sovereign Lands",
+                description: "Deep within native territory, Matriarch Awenasa instills the vision of resilience and harmony with the land into her daughter. Before European settlement shifts the frontier, she foretells a descendant who will hold the reins of the entire continent.",
+                keyEvent: "The sacred ancestral pledge made beneath the Whispering Pines.",
+                quote: "'No boundary line drawn on parchment can divide the spirit of our people.'"
+            },
+            2: {
+                title: "2nd Generation: Samuel & Nahoma Redfeather",
+                era: "1888 – Territorial Shift & Frontier Migration",
+                description: "Forced into migration during federal border re-draws, Nahoma keeps the lineage records intact on hand-sewn leather pouches. The family survives bitter winters while maintaining legal claims to sovereign identity.",
+                keyEvent: "Preservation of family genealogies through forced westward displacement.",
+                quote: "'We carry the campfire inside us, no matter how cold the trail.'"
+            },
+            3: {
+                title: "3rd Generation: Clara Redfeather-Vane",
+                era: "1925 – Industrial Surge & Cultural Rights",
+                description: "Clara travels to Chicago as one of the earliest Native American female legal advocates. She bridges traditional tribal councils with state courts, laying ground for civil recognition.",
+                keyEvent: "Establishing the First Indigenous Educational Scholarship Fund.",
+                quote: "'Law is the new shield; knowledge is our arrow.'"
+            },
+            4: {
+                title: "4th Generation: Dr. Sarah Vane-Oakley (The Mother)",
+                era: "1962 – Civil Rights Era to Capital Hill",
+                description: "A visionary educator and activist whose quiet wisdom inspires her son. Sarah passes down the sacred dream given to her great-great-grandmother, preparing her son for national destiny.",
+                keyEvent: "The seminal speech at the National Ancestral Summit.",
+                quote: "'You carry five generations of prayers into every room you enter.'"
+            },
+            5: {
+                title: "5th Generation: President Arthur Oakley",
+                era: "2008 – 1600 Pennsylvania Avenue",
+                description: "Taking the oath of office on a Bible wrapped in his great-great-grandmother's woven tribal sash, President Oakley fulfills the mother's dream—taking the American tribal bloodline to the White House.",
+                keyEvent: "Inauguration as the Chief Executive of the United States.",
+                quote: "'Tonight, the circle of history is completed and renewed.'"
+            }
+        };
+
+        // Select Bloodline Tab Function
+        function selectGeneration(genNum) {
+            // Update buttons state
+            document.querySelectorAll('.gen-tab-btn').forEach((btn, index) => {
+                if (index + 1 === genNum) {
+                    btn.className = "gen-tab-btn px-4 py-2.5 rounded-full border border-gold-500/40 text-xs sm:text-sm font-semibold transition-all bg-gold-500 text-black gold-glow";
+                } else {
+                    btn.className = "gen-tab-btn px-4 py-2.5 rounded-full border border-gold-500/30 text-xs sm:text-sm font-semibold text-gray-300 hover:text-gold-400 hover:border-gold-400 transition-all bg-obsidian-800";
+                }
+            });
+
+            // Update Card Content
+            const data = bloodlineData[genNum];
+            const card = document.getElementById('generationCard');
+            
+            card.innerHTML = `
+                <div class="space-y-4">
+                    <div class="flex flex-wrap items-center justify-between gap-2 border-b border-gold-500/20 pb-4">
+                        <span class="text-xs font-mono text-gold-400 font-bold uppercase tracking-wider">${data.era}</span>
+                        <span class="text-xs px-3 py-1 rounded-full bg-gold-500/10 text-gold-300 border border-gold-500/30">Generation ${genNum} of 5</span>
+                    </div>
+                    <h3 class="font-cinzel text-xl sm:text-3xl font-bold text-white">${data.title}</h3>
+                    <p class="text-gray-300 text-sm sm:text-base leading-relaxed font-body">${data.description}</p>
+                </div>
+
+                <div class="mt-8 pt-6 border-t border-gray-800 grid grid-cols-1 md:grid-cols-2 gap-4 items-center">
+                    <div class="bg-obsidian-900/80 p-4 rounded-xl border border-gold-500/10">
+                        <span class="text-[10px] text-gold-400 font-bold uppercase tracking-widest block mb-1">Key Milestone</span>
+                        <p class="text-xs text-gray-200 font-medium">${data.keyEvent}</p>
+                    </div>
+                    <div class="bg-obsidian-900/80 p-4 rounded-xl border border-gold-500/10 italic text-xs text-gold-200 font-body">
+                        ${data.quote}
+                    </div>
+                </div>
+            `;
+        }
+
+        // Initialize First Generation on load
+        selectGeneration(1);
+
+        // Sample Chapters Text Data
+        const chapterTexts = {
+            1: {
+                num: "CHAPTER ONE",
+                title: "The River of Whispering Pines (1845)",
+                text: `
+                    <p class="first-letter:text-4xl first-letter:font-cinzel first-letter:font-bold first-letter:text-gold-400 first-letter:float-left first-letter:mr-3">
+                        The autumn wind swept across the ridges with the smell of woodsmoke and early frost. High above the valley, Matriarch Awenasa stood beside her daughter, watching the shadows lengthen across land that had known their ancestors for ten thousand moons.
+                    </p>
+                    <p>
+                        "Listen closely, child," Awenasa whispered, resting her worn hand upon the young girl's shoulder. "The surveyors come with iron rods and paper deeds, thinking they can measure what belongs only to the Sky and the Earth. They see only timber and soil. They do not see the dream."
+                    </p>
+                    <p>
+                        "What dream, Mother?" the girl asked, her voice clear in the crisp dusk.
+                    </p>
+                    <p>
+                        Awenasa closed her eyes, gazing far beyond the immediate horizon into a future carved by struggle and grace. "A dream that one day, long after our names are woven into forgotten songs, a child of our blood will walk into the highest council hall of this nation—not as a captive, nor as a stranger, but as the Leader chosen by all peoples."
+                    </p>
+                    <p>
+                        That night, beside the hearth fire, the sacred pledge was sealed—a silent inheritance passed from mother to child through five generations of American history.
+                    </p>
+                `
+            },
+            2: {
+                num: "CHAPTER TWO",
+                title: "Across the Divide (1888)",
+                text: `
+                    <p>
+                        The wagon wheels creaked over the frozen mud of the Indian Territory border. Nahoma held the leatherbound journal wrapped tightly inside her mother's hand-woven blanket. Around her, families marched under armed escort, leaving behind the valleys of their birth.
+                    </p>
+                    <p>
+                        "They can take our farmland," Nahoma told her young son, Samuel, "but they cannot erase the bloodline. You will learn their letters, you will speak their statutes, and you will hold fast to who you are."
+                    </p>
+                `
+            },
+            3: {
+                num: "CHAPTER THREE",
+                title: "The Steel & Harvest Era (1925)",
+                text: `
+                    <p>
+                        Chicago in 1925 was a roar of steam locomotives and rising skyscrapers. Clara Redfeather stood on the steps of the municipal courthouse, holding a newly minted law diploma—one of the very first awarded to a Native woman in the state.
+                    </p>
+                    <p>
+                        In her briefcase lay papers asserting tribal water rights against powerful industrial syndicates. She remembered her grandmother's words: <em>Law is the new shield.</em>
+                    </p>
+                `
+            },
+            4: {
+                num: "CHAPTER FOUR",
+                title: "Voices in the Capitol (1962)",
+                text: `
+                    <p>
+                        Dr. Sarah Vane-Oakley adjusted the microphone inside the Senate Committee chamber. Across the long mahogany table sat lawmakers debating the relocation of indigenous families.
+                    </p>
+                    <p>
+                        "My grandmothers walked five hundred miles to preserve our identity," Sarah testified, her voice commanding total silence across the gallery. "We do not ask for charity. We demand the honor of treaties sworn in good faith."
+                    </p>
+                `
+            },
+            5: {
+                num: "CHAPTER FIVE",
+                title: "The Portico of Promises (2008)",
+                text: `
+                    <p>
+                        The snow fell softly over Pennsylvania Avenue on the eve of January 20th. Inside the quiet room, President-elect Arthur Oakley held his late mother's worn silver locket.
+                    </p>
+                    <p>
+                        Tomorrow, he would place his hand upon the family Bible wrapped in Awenasa's 1845 woven sash. The five-generation arc from the tribal fires to the White House was complete.
+                    </p>
+                `
+            }
+        };
+
+        let currentFontSize = 18;
+
+        // Reader Modal Controls
+        function openReaderModal(chapNum) {
+            const data = chapterTexts[chapNum] || chapterTexts[1];
+            document.getElementById('readerChapterNum').innerText = data.num;
+            document.getElementById('readerTitle').innerText = data.title;
+            document.getElementById('readerContent').innerHTML = data.text;
+            document.getElementById('readerProgress').innerText = `Chapter ${chapNum} Excerpt`;
+            
+            document.getElementById('readerModal').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeReaderModal() {
+            document.getElementById('readerModal').classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+
+        function changeFontSize(delta) {
+            currentFontSize = Math.min(Math.max(currentFontSize + (delta * 2), 14), 26);
+            document.getElementById('readerContent').style.fontSize = `${currentFontSize}px`;
+        }
+
+        // Order Modal Controls
+        function openOrderModal() {
+            document.getElementById('orderModal').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeOrderModal() {
+            document.getElementById('orderModal').classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+
+        function confirmOrder(edition) {
+            closeOrderModal();
+            showToast(`Thank you! Reserved ${edition}. Redirecting to checkout...`);
+        }
+
+        // Newsletter Submit Handler
+        function handleSubscribe(e) {
+            e.preventDefault();
+            const email = document.getElementById('newsletterEmail').value;
+            if (email) {
+                showToast("Welcome to the Readers Circle! Check your inbox soon.");
+                document.getElementById('newsletterEmail').value = '';
+            }
+        }
+
+        // Toast Helper
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            document.getElementById('toastMsg').innerText = message;
+            toast.classList.remove('hidden');
+            setTimeout(() => {
+                toast.classList.add('hidden');
+            }, 3500);
+        }
+    </script>
+</body>
+</html>
